@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_subcategories",
+  "info": {
+    "singularName": "user-subcategory",
+    "pluralName": "user-subcategories",
+    "displayName": "user-subcategory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_subcategories"
+    },
+    "subcategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subcategory.subcategory",
+      "inversedBy": "user_subcategories"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

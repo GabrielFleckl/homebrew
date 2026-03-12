@@ -1,0 +1,82 @@
+# ======================================
+#  Node.js (Strapi + React)
+# ======================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+build/
+dist/
+.cache/
+.next/
+out/
+
+# NGINX files
+nginx.conf
+
+# Local environment files
+.env
+.env.*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+
+# ======================================
+#  Strapi 4
+# ======================================
+/backend/.tmp/
+/backend/.cache/
+/backend/build/
+
+# Caso use SQLite
+*.db
+*.sqlite
+
+# ======================================
+#  React (Vite ou Create React App)
+# ======================================
+/frontend/node_modules/
+/frontend/dist/
+/frontend/build/
+/frontend/.vite/
+
+# ======================================
+#  Docker
+# ======================================
+docker-compose.override.yml
+docker-data/
+*.pid
+
+# Volumes/montagens locais
+db_data/
+logs/
+
+# ======================================
+#  Sistema operacional
+# ======================================
+.DS_Store
+Thumbs.db
+
+# ======================================
+#  IDEs/Editores
+# ======================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ======================================
+#  Logs
+# ======================================
+logs/
+*.log
+
+# ======================================
+#  Misc
+# ======================================
+*.local
+*.tmp

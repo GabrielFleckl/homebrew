@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medals",
+  "info": {
+    "singularName": "medal",
+    "pluralName": "medals",
+    "displayName": "Medals"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 2,
+      "required": true
+    },
+    "medal": {
+      "type": "enumeration",
+      "enum": [
+        "Ouro",
+        "Prata",
+        "Bronze"
+      ],
+      "required": true
+    },
+    "Description": {
+      "type": "text"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "medals"
+    }
+  }
+}

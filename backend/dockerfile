@@ -1,0 +1,48 @@
+FROM node:18-alpine
+
+# Dependências nativas necessárias para o Strapi
+RUN apk update && apk add --no-cache \
+  build-base \
+  gcc \
+  autoconf \
+  automake \
+  zlib-dev \
+  libpng-dev \
+  nasm \
+  bash \
+  vips-dev \
+  git
+
+# Ambiente de produção
+ENV NODE_ENV=production
+
+# Diretório base
+WORKDIR /opt/
+
+# Copia apenas os manifests primeiro (cache de dependências)
+COPY package.json package-lock.json ./
+
+# Instala dependências
+RUN npm install -g node-gyp \
+  && npm config set fetch-retry-maxtimeout 600000 -g \
+  && npm ci --only=production
+
+# Ajusta PATH
+ENV PATH=/opt/node_modules/.bin:$PATH
+
+# Copia o restante do projeto
+WORKDIR /opt/app
+COPY . .
+
+# Permissões
+RUN chown -R node:node /opt/app
+USER node
+
+# Build do admin panel
+RUN npm run build
+
+# Porta padrão do Strapi
+EXPOSE 1337
+
+# Start em produção
+CMD ["npm", "run", "start"]

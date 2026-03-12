@@ -1,0 +1,74 @@
+
+services:
+  strapi:
+    container_name: strapi-back-end
+    build: 
+      context: "../backend"
+    image: strapi-backend:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: strapiDB
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ../backend/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - strapi
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: strapi-database
+    platform: linux/amd64 
+    restart: unless-stopped
+    env_file: .env
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+    volumes: 
+      - strapi-data:/var/lib/mysql 
+      - ../backend/data:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - strapi
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DATABASE_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+
+  frontend:
+    container_name: strapi-frontend
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    image: strapi-frontend:latest
+    ports:
+      - "80:80"
+    networks:
+      - strapi
+    depends_on:
+      - strapi
+
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: Strapi-network
+    driver: bridge
