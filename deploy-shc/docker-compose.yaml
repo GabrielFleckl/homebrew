@@ -58,6 +58,7 @@ services:
       context: ../frontend
       dockerfile: Dockerfile
     image: strapi-frontend:latest
+    restart: unless-stopped
     ports:
       - "80:80"
     networks:
