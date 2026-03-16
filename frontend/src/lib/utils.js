@@ -24,3 +24,18 @@ export function parseLocalDate(dateString) {
   const [year, month, day] = dateString.split("-").map(Number);
   return new Date(year, month - 1, day);
 }
+
+export function getStrapiUrl(path) {
+  if (!path) return "";
+
+  if (import.meta.env.DEV && import.meta.env.VITE_ASSETS_URL) {
+    return `${import.meta.env.VITE_ASSETS_URL}${path}`;
+  }
+
+  return path;
+}
+
+export function removeMarkdownImages(text) {
+  if (!text) return "";
+  return text.replace(/!\[.*?\]\(.*?\)/g, "");
+}
