@@ -5,6 +5,7 @@ import api from "../../lib/axios/api";
 
 import useMe from "../../hooks/useMe";
 import { formatUsername } from "../../lib/utils";
+import { getStrapiUrl } from "../../lib/utils";
 
 import UserNavBar from "../layout/UserNavBar";
 import Loading from "../ui/Loading";
@@ -73,9 +74,7 @@ function Ranking() {
                         {rank.user.avatar ? (
                           <img
                             className="h-[82px] w-[82px] rounded-full object-cover"
-                            src={
-                              rank.user.avatar
-                            }
+                            src={getStrapiUrl(rank.user.avatar)}
                             alt="user avatar"
                           />
                         ) : (

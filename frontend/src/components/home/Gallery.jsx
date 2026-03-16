@@ -3,6 +3,7 @@ import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { BlurFade } from "../ui/blur-fade";
 import apiPublic from "@/lib/axios/apiPublic";
+import { getStrapiUrl } from "@/lib/utils";
 
 const BATCH_SIZE = 12;
 
@@ -61,10 +62,7 @@ function Gallery() {
       <PhotoProvider>
         <div className="mx-auto grid max-w-[95%] grid-cols-4 gap-3 px-8 pb-8 xl:grid-cols-5">
           {galleryImages.map((image, i) => (
-            <PhotoView
-              key={i}
-              src={image.attributes.url}
-            >
+            <PhotoView key={i} src={getStrapiUrl(image.attributes.url)}>
               <div className="aspect-square w-full cursor-pointer overflow-hidden rounded-2xl">
                 <BlurFade
                   delay={0.1 * i + 0.01}
@@ -72,7 +70,7 @@ function Gallery() {
                   className="h-full w-full"
                 >
                   <img
-                    src={image.attributes.url}
+                    src={getStrapiUrl(image.attributes.url)}
                     className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
                   />
                 </BlurFade>

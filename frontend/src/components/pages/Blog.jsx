@@ -5,6 +5,9 @@ import Loading from "../ui/Loading";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import UserNavBar from "../layout/UserNavBar";
+import { removeMarkdownImages } from "@/lib/utils";
+
+import { getStrapiUrl } from "@/lib/utils";
 
 function Blog() {
   const token = localStorage.getItem("jwt");
@@ -38,9 +41,9 @@ function Blog() {
               <figure className="w-full md:w-1/2">
                 <img
                   className="aspect-video h-auto w-full rounded-sm object-cover"
-                  src={
+                  src={getStrapiUrl(
                     mainPost.attributes.Capa.data.attributes.url
-                  }
+                  )}
                   alt="Capa do post"
                 />
               </figure>
@@ -61,7 +64,7 @@ function Blog() {
                   {mainPost.attributes.Titulo}
                 </h1>
                 <p className="line-clamp-5 max-w-prose text-base leading-6 text-white/80 sm:text-lg md:text-xl">
-                  {mainPost.attributes.Conteudo}
+                  {removeMarkdownImages(mainPost.attributes.Conteudo)}
                 </p>
               </aside>
             </a>
@@ -88,9 +91,9 @@ function Blog() {
                   <figure>
                     <img
                       className="aspect-video h-auto w-full rounded-sm object-cover"
-                      src={
+                      src={getStrapiUrl(
                         posts.attributes.Capa.data.attributes.url
-                      }
+                      )}
                       alt="capa do post"
                     />
                   </figure>

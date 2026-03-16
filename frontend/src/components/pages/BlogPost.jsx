@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer";
+import { getStrapiUrl } from "@/lib/utils";
 
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
@@ -53,7 +54,7 @@ function BlogPost() {
   const { Titulo, Conteudo, Capa } = post.attributes;
 
   return (
-    <main className=" text-white ">
+    <main className="text-white">
       {token ? <UserNavBar /> : <Navbar />}
 
       <article className="m-auto my-3 flex min-h-screen max-w-(--breakpoint-xl) flex-col px-8 md:my-10">
@@ -61,7 +62,7 @@ function BlogPost() {
           <div className="flex flex-col items-center justify-center">
             <img
               className="aspect-2/1 w-full rounded-xl object-cover md:aspect-4/1"
-              src={Capa.data.attributes.url}
+              src={getStrapiUrl(Capa.data.attributes.url)}
               alt="Capa do post"
             />
           </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import DefaultUserAvatar from "../icons/DefaultUserAvatarIcon";
+import { getStrapiUrl } from "../../lib/utils";
 
 import api from "../../lib/axios/api";
 
@@ -104,9 +105,7 @@ function Avatar({ userId }) {
     <div className="relative h-40 w-40 min-w-41">
       {user?.avatar?.url ? (
         <img
-          src={`${user.avatar.url}?t=${
-            user.avatar.updatedAt
-          }`}
+          src={`${getStrapiUrl(user.avatar.url)}?t=${user.avatar.updatedAt}`}
           alt="User avatar"
           className="h-full w-full rounded-full object-cover"
         />

@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 
 import apiPublic from "../../lib/axios/apiPublic";
 import { cn } from "../../lib/utils";
+import { getStrapiUrl } from "@/lib/utils";
 import SlideNextButton from "../carousel/SlideNextButton";
 import SlidePreviousButton from "../carousel/SlidePreviousButton";
 
@@ -59,9 +60,7 @@ function Carousel() {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <img
-              src={
-                slide.attributes.image.data.attributes.url
-              }
+              src={getStrapiUrl(slide.attributes.image.data.attributes.url)}
               style={{
                 objectPosition: slide.attributes.image_position ?? "50% 50%",
               }}
