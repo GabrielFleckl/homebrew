@@ -54,7 +54,7 @@ function Meetings() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col text-white ">
+    <div className="flex min-h-screen flex-col text-white">
       {token ? <UserNavBar /> : <Navbar />}
 
       <section className="mt-8 flex flex-1 flex-col pb-4">

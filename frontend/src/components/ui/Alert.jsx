@@ -15,7 +15,7 @@ function Alert({ type = "success", message }) {
     <div
       role="alert"
       className={cn(
-        "animate-in fade-in slide-in-from-bottom-2 absolute right-2 bottom-2 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 rounded-lg px-4 py-3 font-semibold shadow-lg transition-all duration-300 ease-out md:flex text-center",
+        "animate-in fade-in slide-in-from-bottom-2 absolute right-2 bottom-2 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 rounded-lg px-4 py-3 text-center font-semibold shadow-lg transition-all duration-300 ease-out md:flex",
         {
           "bg-lime-800 text-white": type === "success",
           "bg-red-800 text-white": type === "error",

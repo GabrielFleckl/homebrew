@@ -16,7 +16,7 @@ function Home() {
         <About />
         <ForWho />
         <Enjoy />
-        <Gallery/>
+        <Gallery />
       </section>
 
       <Footer />

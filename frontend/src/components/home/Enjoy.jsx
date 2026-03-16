@@ -3,7 +3,7 @@ import { NumberTicker } from "@/components/ui/number-ticker";
 function Enjoy() {
   return (
     <>
-      <section className="px-6 py-12 md:py-24 text-white">
+      <section className="px-6 py-12 text-white md:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16 text-center">
             <h1 className="mb-4 text-xl font-bold md:text-5xl">
@@ -76,7 +76,9 @@ function Enjoy() {
                     />{" "}
                     anos
                   </h4>
-                  <p className="text-zinc-400">Fortalecendo a cultura cervejeira</p>
+                  <p className="text-zinc-400">
+                    Fortalecendo a cultura cervejeira
+                  </p>
                 </div>
               </div>
             </div>

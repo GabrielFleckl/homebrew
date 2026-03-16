@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 
 export function BlurFade({
@@ -14,9 +14,9 @@ export function BlurFade({
   blur = "6px",
   ...props
 }) {
-  const ref = useRef(null)
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin })
-  const isInView = !inView || inViewResult
+  const ref = useRef(null);
+  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
+  const isInView = !inView || inViewResult;
   const defaultVariants = {
     hidden: {
       [direction === "left" || direction === "right" ? "x" : "y"]:
@@ -29,8 +29,8 @@ export function BlurFade({
       opacity: 1,
       filter: `blur(0px)`,
     },
-  }
-  const combinedVariants = variant || defaultVariants
+  };
+  const combinedVariants = variant || defaultVariants;
   return (
     <AnimatePresence>
       <motion.div
@@ -45,7 +45,8 @@ export function BlurFade({
           ease: "easeOut",
         }}
         className={className}
-        {...props}>
+        {...props}
+      >
         {children}
       </motion.div>
     </AnimatePresence>
